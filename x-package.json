@@ -8,7 +8,6 @@
     "@sailshq/connect-redis": "^3.2.1",
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
-    "body-parser": "^1.19.0",
     "grunt": "1.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -18,11 +17,11 @@
     "sails-hook-sockets": "^1.5.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
     "@sailshq/eslint": "^4.19.3",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "html-webpack-plugin": "^3.2.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
@@ -31,15 +30,10 @@
     "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
-    "start": "npm-run-all --parallel open:client lift",
-    "start:debug": "npm-run-all --parallel open:client debug",
-    "open:client": "webpack-dev-server --mode development --open",
-    "build": "npm run build:prod",
-    "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production",
-    "clean": "rimraf .tmp && mkdirp .tmp/public",
-    "lift": "sails lift",
-    "debug": "node --inspect app.js"
+    "start": "NODE_ENV=production node app.js",
+    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },
   "main": "app.js",
   "repository": {
